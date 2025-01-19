@@ -11,8 +11,6 @@ Knowing your TDEE can be helpful for various purposes, such as:
 
 This TDEE calculator app provides a personalized estimate of your daily calorie needs based on your age, gender, weight, height, and activity level. While these calculations are based on proven formulas, remember that individual results may vary, and it's always recommended to consult with healthcare professionals for personalized advice.
 
-If you are in UK, you can use our VAT Calculator to calculate your VAT.
-
 ### How TDEE is Calculated
 
 We use the Mifflin-St Jeor equation to calculate your Basal Metabolic Rate (BMR), then multiply it by an activity factor to determine your TDEE. This method is widely recognized for its accuracy in estimating daily calorie needs.
