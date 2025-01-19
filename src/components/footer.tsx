@@ -2,33 +2,14 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer
-      style={{
-        background: "var(--bg-light)",
-        padding: "2rem 0",
-        marginTop: "3rem",
-        borderTop: "1px solid var(--border)",
-      }}
-    >
+    <footer className="bg-brand-background-light py-8 px-0 mt-12 border border-brand-border">
       <div className="app-container">
-        <hr
-          style={{
-            border: "none",
-            borderTop: "1px solid var(--border)",
-            margin: "2rem 0",
-          }}
-        />
+        <hr className="my-8 border-0 border-t border-brand-border" />
         <div style={{ textAlign: "center" }}>
-          <p
-            style={{
-              color: "var(--text)",
-              fontWeight: 500,
-              marginBottom: "1rem",
-            }}
-          >
-            © 2024 TDEE Calculator. All rights reserved.
+          <p className="font-medium mb-4">
+            © {new Date().getFullYear()} TDEE Calculator. All rights reserved.
           </p>
-          <p style={{ color: "var(--text-light)", fontSize: "0.875rem" }}>
+          <p className="text-brand-text-light text-sm">
             Please use responsibly. Consult a healthcare professional for
             personalized advice.
           </p>
