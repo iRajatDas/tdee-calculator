@@ -1,36 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+What is TDEE?
+-------------
 
-## Getting Started
+TDEE stands for Total Daily Energy Expenditure. It is an estimate of the total number of calories your body burns in a day, including the calories you burn through physical activity and exercise, as well as the calories your body needs to maintain basic functions like breathing, digestion, and circulation.
 
-First, run the development server:
+Knowing your TDEE can be helpful for various purposes, such as:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*   **Weight Management:** If you want to maintain, lose, or gain weight, understanding your TDEE can help you determine the appropriate calorie intake for your goals.
+*   **Meal Planning:** Knowing your daily calorie needs can guide you in creating a balanced meal plan that meets your energy requirements.
+*   **Fitness Goals:** TDEE can help you optimize your nutrition and training to support your fitness goals, whether you're looking to build muscle, improve endurance, or enhance overall performance.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This TDEE calculator app provides a personalized estimate of your daily calorie needs based on your age, gender, weight, height, and activity level. While these calculations are based on proven formulas, remember that individual results may vary, and it's always recommended to consult with healthcare professionals for personalized advice.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+If you are in UK, you can use our VAT Calculator to calculate your VAT.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### How TDEE is Calculated
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+We use the Mifflin-St Jeor equation to calculate your Basal Metabolic Rate (BMR), then multiply it by an activity factor to determine your TDEE. This method is widely recognized for its accuracy in estimating daily calorie needs.
