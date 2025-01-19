@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
   content: [
@@ -9,8 +10,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        brand: {
+          background: {
+            DEFAULT: "var(--bg)",
+            light: "var(--bg-light)",
+          },
+          text: {
+            DEFAULT: "var(--text)",
+            light: "var(--text-light)",
+          },
+          primary: {
+            DEFAULT: "var(--primary)",
+            dark: "var(--primary-dark)",
+            light: "var(--primary-light)",
+          },
+          border: "var(--border)",
+          success: "var(--success)",
+          error: "var(--error)",
+        },
+      },
+      fontFamily: {
+        sans: ["Satoshi", ...defaultTheme.fontFamily.sans],
       },
     },
   },

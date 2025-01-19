@@ -3,19 +3,574 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary: #0f62fe;
+  --primary-dark: #0043ce;
+  --primary-light: #78a9ff;
+  --text: #161616;
+  --text-light: #525252;
+  --bg: #f4f4f4;
+  --bg-light: #ffffff;
+  --border: #e0e0e0;
+  --success: #198038;
+  --error: #da1e28;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply font-sans leading-6 bg-brand-background min-h-dvh antialiased text-brand-text;
+}
+
+.app-container {
+  @apply max-w-[1052px] mx-auto p-6;
+}
+
+.main-layout {
+  @apply relative grid gap-6 lg:grid-cols-[728px,300px];
+}
+
+.calculator-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  width: 2rem;
+  height: 2rem;
+  background: var(--primary);
+  border-radius: 25px;
+}
+
+h1 {
+  font-size: 3.25rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  background: linear-gradient(
+    135deg,
+    var(--primary-dark) 0%,
+    var(--primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--text-light);
+  max-width: 600px;
+}
+
+.calculator {
+  background: var(--bg-light);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.form-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--text);
+}
+
+input,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.15s ease;
+  width: 100%;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(15, 98, 254, 0.1);
+  background: white;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+.unit-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  background: var(--bg);
+  padding: 0.25rem;
+  border-radius: 8px;
+}
+
+.unit-toggle input {
+  display: none;
+}
+
+.unit-toggle label {
+  text-align: center;
+  padding: 0.625rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.unit-toggle input:checked + label {
+  background: white;
+  color: var(--primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.primary-button {
+  background: var(--primary);
+  color: white;
+  width: 100%;
+}
+
+.primary-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.results {
+  background: var(--bg-light);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.results-header {
+  background: var(--primary);
+  color: white;
+  padding: 1.5rem;
+}
+
+.results-content {
+  padding: 1.5rem;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.result-card {
+  background: var(--bg);
+  padding: 1.25rem;
+  border-radius: 8px;
+}
+
+.result-label {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.result-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+@media (max-width: 1080px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .info-section {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+  }
+
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results-header {
+    padding: 1.25rem;
+  }
+
+  .results-content {
+    padding: 1.25rem;
+  }
+
+  /* Adjust the main TDEE value size */
+  .results-content [style*="font-size: 2.5rem"] {
+    font-size: 2rem !important;
+  }
+
+  /* Make cards more compact */
+  .result-card {
+    padding: 1rem;
+  }
+
+  /* Adjust chart container padding */
+  [style*="margin-top: 2rem; padding: 1.5rem"] {
+    padding: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 0.75rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .calculator {
+    padding: 1.25rem;
+  }
+
+  /* Make form inputs more touch-friendly */
+  input,
+  select,
+  button {
+    padding: 0.875rem;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  .unit-toggle label {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+}
+
+.reset-button {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.875rem 1.5rem;
+}
+
+.reset-button:hover {
+  background: var(--border);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .button-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-section {
+  background: var(--bg-light);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  grid-column: 1;
+}
+
+.info-section h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.info-section p {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.info-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.info-list li:before {
+  content: "•";
+  color: var(--primary);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .info-section {
+    padding: 1.5rem;
+  }
+
+  .info-section h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.primary-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.app-container + .app-container {
+  margin-top: 1.5rem;
+}
+
+.macro-tab {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.macro-tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.site-helper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.helper-btn {
+  width: 40px;
+  height: 40px;
+  background: #2c3e50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.helper-btn:hover {
+  transform: scale(1.05);
+}
+
+.helper-info {
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  width: 220px;
+  display: none;
+  z-index: 999999;
+}
+
+@media (max-width: 768px) {
+  .helper-info {
+    width: 180px;
+    right: -10px;
+  }
+  .site-helper {
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+.helper-info.visible {
+  display: block;
+}
+
+.info-text {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.info-detail {
+  background: #f8f9fa;
+  padding: 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 12px;
+  word-break: break-all;
+  text-align: center;
+  border: 1px solid #e9ecef;
+  -webkit-user-select: all;
+  user-select: all;
+}
+
+.info-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  color: #999;
+  font-size: 18px;
+  line-height: 1;
+  padding: 5px;
+}
+
+/**
+* @license
+*
+* Font Family: Satoshi
+* Designed by: Deni Anggara
+* URL: https://www.fontshare.com/fonts/satoshi
+* Â© 2025 Indian Type Foundry
+*
+* Satoshi Light 
+* Satoshi LightItalic 
+* Satoshi Regular 
+* Satoshi Italic 
+* Satoshi Medium 
+* Satoshi MediumItalic 
+* Satoshi Bold 
+* Satoshi BoldItalic 
+* Satoshi Black 
+* Satoshi BlackItalic 
+* Satoshi Variable (Variable font)
+* Satoshi VariableItalic (Variable font)
+
+*
+*/
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../public/assets/fonts/Satoshi-Light.woff2") format("woff2"),
+    url("../../public/assets/fonts/Satoshi-Light.woff") format("woff"),
+    url("../../public/assets/fonts/Satoshi-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../public/assets/fonts/Satoshi-LightItalic.woff2")
+      format("woff2"),
+    url("../../public/assets/fonts/Satoshi-LightItalic.woff") format("woff"),
+    url("../../public/assets/fonts/Satoshi-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../public/assets/fonts/Satoshi-Regular.woff2") format("woff2"),
+    url("../../public/assets/fonts/Satoshi-Regular.woff") format("woff"),
+    url("../../public/assets/fonts/Satoshi-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../public/assets/fonts/Satoshi-Italic.woff2") format("woff2"),
+    url("../../public/assets/fonts/Satoshi-Italic.woff") format("woff"),
+    url("../../public/assets/fonts/Satoshi-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../public/assets/fonts/Satoshi-Medium.woff2") format("woff2"),
+    url("../../public/assets/fonts/Satoshi-Medium.woff") format("woff"),
+    url("../../public/assets/fonts/Satoshi-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../public/assets/fonts/Satoshi-Bold.woff2") format("woff2"),
+    url("../../public/assets/fonts/Satoshi-Bold.woff") format("woff"),
+    url("../../public/assets/fonts/Satoshi-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
 }
