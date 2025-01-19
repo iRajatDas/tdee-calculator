@@ -3,7 +3,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="header">
+    <header className="header !mb-0">
       <div className="brand">
         <div className="logo" />
         <Link href="/" style={{ textDecoration: "none" }}>
