@@ -281,9 +281,7 @@ export default function TdeeCalculatorPage() {
                     <label htmlFor="imperial">Imperial</label>
                   </div>
                   {errors.unitSystem && (
-                    <span style={{ color: "red" }}>
-                      {errors.unitSystem.message}
-                    </span>
+                    <span data-error>{errors.unitSystem.message}</span>
                   )}
                 </div>
 
@@ -296,9 +294,7 @@ export default function TdeeCalculatorPage() {
                     placeholder="Years"
                     {...register("age", { valueAsNumber: true })}
                   />
-                  {errors.age && (
-                    <span style={{ color: "red" }}>{errors.age.message}</span>
-                  )}
+                  {errors.age && <span data-error>{errors.age.message}</span>}
                 </div>
 
                 {/* Gender */}
@@ -309,9 +305,7 @@ export default function TdeeCalculatorPage() {
                     <option value="female">Female</option>
                   </select>
                   {errors.gender && (
-                    <span style={{ color: "red" }}>
-                      {errors.gender.message}
-                    </span>
+                    <span data-error>{errors.gender.message}</span>
                   )}
                 </div>
 
@@ -329,9 +323,7 @@ export default function TdeeCalculatorPage() {
                     {...register("weight", { valueAsNumber: true })}
                   />
                   {errors.weight && (
-                    <span style={{ color: "red" }}>
-                      {errors.weight.message}
-                    </span>
+                    <span data-error>{errors.weight.message}</span>
                   )}
                 </div>
 
@@ -349,9 +341,7 @@ export default function TdeeCalculatorPage() {
                     {...register("height", { valueAsNumber: true })}
                   />
                   {errors.height && (
-                    <span style={{ color: "red" }}>
-                      {errors.height.message}
-                    </span>
+                    <span data-error>{errors.height.message}</span>
                   )}
                 </div>
 
@@ -372,9 +362,7 @@ export default function TdeeCalculatorPage() {
                     <option value="1.9">Athlete (2x training per day)</option>
                   </select>
                   {errors.activityLevel && (
-                    <span style={{ color: "red" }}>
-                      {errors.activityLevel.message}
-                    </span>
+                    <span data-error>{errors.activityLevel.message}</span>
                   )}
                 </div>
 
@@ -776,18 +764,14 @@ export default function TdeeCalculatorPage() {
               </li>
             </ul>
             <p>
-              Our
-              <Link href="/">TDEE Calculator</Link> provides a personalized
+              Our <Link href="/">TDEE Calculator</Link> provides a personalized
               estimate of your daily calorie needs based on your age, gender,
               weight, height, and activity level. While these calculations are
               based on proven formulas, remember that individual results may
               vary, and it&apos;s always recommended to consult with healthcare
               professionals for personalized advice.
             </p>
-            <p>
-              If you are in UK, you can use our VAT Calculator to calculate your
-              VAT.
-            </p>
+
             <div
               style={{
                 background: "var(--bg)",
@@ -815,7 +799,7 @@ export default function TdeeCalculatorPage() {
             </div>
           </div>
 
-          <aside></aside>
+          <aside>{/* Additional side content could go here */}</aside>
         </div>
       </div>
     </>
