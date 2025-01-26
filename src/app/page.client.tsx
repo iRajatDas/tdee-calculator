@@ -604,8 +604,21 @@ export default function TdeeCalculatorPage() {
                         marginBottom: "1rem",
                       }}
                     >
-                      Recommended Macronutrients
+                      Recommended Daily Macronutrients
                     </h3>
+
+                    {/* Explanation of how macros are derived */}
+                    <p style={{ fontSize: "0.875rem", marginBottom: "1rem" }}>
+                      These values show your <strong>daily</strong> recommended
+                      intake of protein, fats, and carbohydrates based on your
+                      total daily calorie needs (TDEE) and your chosen ratio. We
+                      assume:
+                      <br />• <strong>Protein &amp; Carbs:</strong> 4 calories
+                      per gram
+                      <br />• <strong>Fats:</strong> 9 calories per gram
+                    </p>
+
+                    {/* Macro ratio tab selectors */}
                     <div
                       style={{
                         display: "grid",
@@ -642,6 +655,8 @@ export default function TdeeCalculatorPage() {
                         Higher Carb
                       </button>
                     </div>
+
+                    {/* Macro results display */}
                     <div
                       id="macroResults"
                       style={{
@@ -656,21 +671,57 @@ export default function TdeeCalculatorPage() {
                           {macroProtein}g
                         </div>
                         <div style={{ color: "var(--text-light)" }}>
-                          Protein
+                          Protein <small>(per day)</small>
                         </div>
                       </div>
                       <div>
                         <div style={{ fontWeight: 700, fontSize: "1.25rem" }}>
                           {macroFats}g
                         </div>
-                        <div style={{ color: "var(--text-light)" }}>Fats</div>
+                        <div style={{ color: "var(--text-light)" }}>
+                          Fats <small>(per day)</small>
+                        </div>
                       </div>
                       <div>
                         <div style={{ fontWeight: 700, fontSize: "1.25rem" }}>
                           {macroCarbs}g
                         </div>
-                        <div style={{ color: "var(--text-light)" }}>Carbs</div>
+                        <div style={{ color: "var(--text-light)" }}>
+                          Carbs <small>(per day)</small>
+                        </div>
                       </div>
+                    </div>
+
+                    {/* (Optional) Example or further explanation */}
+                    <div
+                      style={{
+                        marginTop: "1rem",
+                        padding: "1rem",
+                        background: "var(--bg-secondary)",
+                        borderRadius: "4px",
+                        fontSize: "0.875rem",
+                      }}
+                    >
+                      <strong>How are these macros calculated?</strong>
+                      <br />
+                      We take your daily calorie requirement (TDEE) and split it
+                      into the chosen percentages. For example, if you select{" "}
+                      <em>Moderate Carb</em> (30% Protein, 35% Fats, 35% Carbs)
+                      and your TDEE is 2400 kcal:
+                      <ul style={{ margin: "0.5rem 0 0 1.5rem" }}>
+                        <li>
+                          Protein: 30% of 2400 = 720 calories → 720 / 4 = 180g
+                          protein/day
+                        </li>
+                        <li>
+                          Fats: 35% of 2400 = 840 calories → 840 / 9 ≈ 93g
+                          fat/day
+                        </li>
+                        <li>
+                          Carbs: 35% of 2400 = 840 calories → 840 / 4 = 210g
+                          carbs/day
+                        </li>
+                      </ul>
                     </div>
                   </div>
 
